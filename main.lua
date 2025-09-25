@@ -5,10 +5,10 @@ local Window = Rayfield:CreateWindow({
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "enjoy the script",
    LoadingSubtitle = "by Mondan",
-   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
+   ShowText = "Mondan160", -- for mobile users to unhide rayfield, change if you'd like
    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
-   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+   ToggleUIKeybind = "J", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
 
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
@@ -33,7 +33,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"MondanScript"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
@@ -186,4 +186,42 @@ local AimbotToggle = MainTab:CreateToggle({
             warn("Aimbot OFF")
         end
     end,
+})
+
+local SecoundTab = Window:CreateTab("Player State", 4483362458) -- Title, Image
+local MainSection = SecoundTab:CreateSection("Player State")
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local Slider = SecoundTab:CreateSlider({
+   Name = "Player WalkSpeed Slider",
+   Range = {0, 200},
+   Increment = 10,
+   Suffix = "Speed",
+   CurrentValue = 16, -- 通常は16
+   Flag = "Slider1",
+   Callback = function(Value)
+        local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = Value
+        end
+   end,
+})
+
+local Slider = SecoundTab:CreateSlider({
+   Name = "Player JumpPower Slider",
+   Range = {0, 200},
+   Increment = 10,
+   Suffix = "Speed",
+   CurrentValue = 16, -- 通常は16
+   Flag = "Slider1",
+   Callback = function(Value)
+        local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = Value
+        end
+   end,
 })
